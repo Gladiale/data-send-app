@@ -12,22 +12,24 @@ use std::net::SocketAddr;
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
-    // println!("port: {}", get_axum_port());
-    println!(
-        "url: {}",
-        format!("http://{}:{}", init_local_ip(), get_tauri_port())
-    );
+    let axum_port = get_axum_port();
+    let tauri_port = get_tauri_port();
+    let local_ip = init_local_ip();
+    let lan_url = format!("http://{}:{}", local_ip, tauri_port);
+
+    // println!("port: {}", axum_port);
+    println!("url: {}", lan_url);
 
     // --- ここが重要：実際のHTTPサーバーをバックグラウンドで立てる ---
     tokio::spawn(async move {
         // 0.0.0.0 は「すべてのネットワークインターフェース」で待機するという意味
-        let addr = SocketAddr::from(([0, 0, 0, 0], get_axum_port()));
+        let addr = SocketAddr::from(([0, 0, 0, 0], axum_port));
         let listener = tokio::net::TcpListener::bind(addr).await.unwrap();
         axum::serve(listener, api_router()).await.unwrap();
     });
 
     tauri::Builder::default()
-        .plugin(tauri_plugin_localhost::Builder::new(get_tauri_port()).build())
+        .plugin(tauri_plugin_localhost::Builder::new(tauri_port).build())
         .setup(move |app| {
             if cfg!(debug_assertions) {
                 app.handle().plugin(
@@ -43,13 +45,13 @@ pub fn run() {
 
             #[cfg(not(dev))]
             let url = {
-                let url: Url = format!("http://{}:{}", init_local_ip(), get_tauri_port())
-                    .parse()
-                    .unwrap();
+                let main_url = format!("http://localhost:{}", tauri_port);
+                let url: Url = main_url.parse().unwrap();
 
                 app.add_capability(
                     CapabilityBuilder::new("localhost")
-                        .remote(url.to_string()) // ここで指定したURLからのアクセスのみ許可
+                        .remote(main_url) // ここで指定したURLからのアクセスのみ許可
+                        .remote(lan_url) // ここで指定したURLからのアクセスのみ許可 （ここのラン環境のアドレス、アクセスが効かない）
                         .window("main"),
                 )?;
 
