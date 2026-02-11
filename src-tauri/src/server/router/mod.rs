@@ -11,6 +11,6 @@ pub fn api_router() -> Router {
 
     Router::new()
         .route("/axum-api/socket-ip", routing::get(get_socket_handler))
-        .route("/axum-api/upload", routing::get(upload_handler))
+        .route("/axum-api/upload", routing::post(upload_handler))
         .layer(cors)
 }
