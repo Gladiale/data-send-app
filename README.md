@@ -1,10 +1,10 @@
 ### 参照
-https://zenn.dev/kei1232/articles/d171d6f9c3aa81
+https://zenn.dev/kei1232/articles/d171d6f9c3aa81  
 https://tkwork.tech/tauri-nextjs-setup-tutorial/
 
 ### 公式
-https://v2.tauri.app/ja/start/frontend/nextjs/
-https://v2.tauri.app/ja/develop/calling-rust/#basic-example
+https://v2.tauri.app/ja/start/frontend/nextjs/  
+https://v2.tauri.app/ja/develop/calling-rust/#basic-example  
 https://v2.tauri.app/ja/plugin/notification/
 
 ### cli
