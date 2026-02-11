@@ -1,6 +1,6 @@
 mod io;
 mod server;
-// #[cfg(not(dev))]
+#[cfg(not(dev))]
 use tauri::{ipc::CapabilityBuilder, Manager, Url};
 use tauri::{WebviewUrl, WebviewWindowBuilder};
 
