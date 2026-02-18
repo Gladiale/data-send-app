@@ -14,7 +14,7 @@ struct FileResponse {
 // 関数の責務の分離
 async fn upload(mut multipart: Multipart) -> Result<Vec<FileResponse>, String> {
     let mut response: Vec<FileResponse> = Vec::new();
-    let upload_dir = "./uploads";
+    let upload_dir = "./upload";
 
     // 保存先ディレクトリがなければ作成
     fs::create_dir_all(upload_dir)

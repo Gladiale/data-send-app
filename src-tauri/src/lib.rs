@@ -2,7 +2,11 @@ mod command;
 mod io;
 mod server;
 
-use crate::{command::get_socket_addr, io::get_axum_port, server::router::app};
+use crate::{
+    command::{get_socket_addr, open_folder},
+    io::get_axum_port,
+    server::router::app,
+};
 use std::net::SocketAddr;
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
@@ -27,7 +31,7 @@ pub fn run() {
             Ok(())
         })
         // NEXT.JS側に公開 参照: https://v2.tauri.app/ja/develop/calling-rust/#basic-example
-        .invoke_handler(tauri::generate_handler![get_socket_addr])
+        .invoke_handler(tauri::generate_handler![get_socket_addr, open_folder])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }

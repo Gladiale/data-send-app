@@ -6,6 +6,7 @@ import { AppCommand } from "@/libs/commands/app-command";
 import { MdComputer } from "react-icons/md";
 import { IoPhonePortraitOutline } from "react-icons/io5";
 import { LiaExchangeAltSolid } from "react-icons/lia";
+import OpenFolders from "./open_folders";
 
 const IpQrCode = () => {
   const { socketAddr, setSocketAddr } = useSocketAddr();
@@ -33,7 +34,7 @@ const IpQrCode = () => {
   }, []);
 
   return (
-    <div className="h-screen container content-center w-fit mx-auto">
+    <div className="h-screen container content-center w-fit mx-auto space-y-7">
       <div className="shadow-md min-w-100 py-2 px-4 border-violet-300 bg-[#f3d8f57f] backdrop-blur-md rounded-xl text-[1.2rem] space-y-2">
         <div className="flex items-center justify-around text-4xl text-amber-200">
           <div className="py-1 px-2 bg-[#af6fb7] rounded-md">
@@ -70,6 +71,8 @@ const IpQrCode = () => {
           IP: {socketAddr ? socketAddr : "取得中..."}
         </p>
       </div>
+
+      <OpenFolders />
     </div>
   );
 };
