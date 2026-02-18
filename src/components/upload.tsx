@@ -136,7 +136,7 @@ const Upload = () => {
               })
             }
             type="button"
-            className="active:border-none active:outline-none h-8 w-full flex items-center justify-center gap-2 bg-[#edcdf4d4] text-[#6e3573] hover:text-amber-200 hover:bg-[#c02b87] active:scale-95 transition duration-300 cursor-pointer text-[1rem]"
+            className="outline-none h-8 w-full flex items-center justify-center gap-2 bg-[#edcdf4d4] text-[#6e3573] hover:text-amber-200 hover:bg-[#c02b87] active:scale-95 transition duration-300 cursor-pointer text-[1rem]"
           >
             <PiUploadThin />
             {isPending ? "uploading ..." : "アップロード"}
