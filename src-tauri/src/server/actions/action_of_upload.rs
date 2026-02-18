@@ -73,6 +73,7 @@ async fn upload(mut multipart: Multipart) -> Result<Vec<FileResponse>, String> {
 }
 
 // Responseを作成
+// Axumのハンドラ関数は「非同期（async）関数」であることが要求される
 // upload_handler 自体は multipart の中身を書き換える必要がなく、単に upload_internal に所有権を渡す（Moveする）だけ
 pub async fn upload_handler(multipart: Multipart) -> impl IntoResponse {
     match upload(multipart).await {

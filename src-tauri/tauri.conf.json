@@ -10,6 +10,15 @@
     "beforeBuildCommand": "npm run build"
   },
   "app": {
+    "windows": [
+      {
+        "title": "ファイル転送アプリ",
+        "width": 470,
+        "height": 600,
+        "resizable": false,
+        "fullscreen": false
+      }
+    ],
     "security": {
       "csp": null
     }

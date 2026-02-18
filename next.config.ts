@@ -1,7 +1,7 @@
 import type { NextConfig } from "next";
 
-const isProd = process.env.NODE_ENV === "production";
-const internalHost = process.env.TAURI_DEV_HOST || "localhost";
+// const isProd = process.env.NODE_ENV === "production";
+// const internalHost = process.env.TAURI_DEV_HOST || "localhost";
 
 const nextConfig: NextConfig = {
   /* config options here */
@@ -15,7 +15,7 @@ const nextConfig: NextConfig = {
     unoptimized: true,
   },
   // assetPrefix を設定してください。さもないとサーバーはアセットを適切に解決できません。
-  assetPrefix: isProd ? undefined : `http://${internalHost}:3000`,
+  // assetPrefix: isProd ? undefined : `http://${internalHost}:3000`,
 };
 
 export default nextConfig;

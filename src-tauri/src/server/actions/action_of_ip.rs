@@ -1,4 +1,4 @@
-use crate::io::{get_axum_port, get_tauri_port};
+use crate::io::get_axum_port;
 use axum::{http::StatusCode, response::IntoResponse, Json};
 use local_ip_address::local_ip;
 use serde::Serialize;
@@ -8,8 +8,6 @@ use std::net::SocketAddr;
 struct AddressResponse {
     // tauri内部のaxum-server
     axum_socket_addr: String,
-    // tauriアプリケーションのlocal-server
-    tauri_socket_addr: String,
 }
 
 // 関数の責務の分離
@@ -19,12 +17,10 @@ fn build_socket_struct() -> Result<AddressResponse, String> {
     let local_ip = local_ip().map_err(|e| format!("Failed to get local IP: {}", e))?;
     // SocketAddrを作成し、文字列に変換 (SocketAddr型だとJS側のシリアライズが問題になるので)
     let axum_socket_addr = SocketAddr::new(local_ip, get_axum_port()).to_string();
-    let tauri_socket_addr = SocketAddr::new(local_ip, get_tauri_port()).to_string();
 
     Ok(AddressResponse {
         // 簡略記法
         axum_socket_addr,
-        tauri_socket_addr,
     })
 }
 

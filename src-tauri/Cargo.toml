@@ -28,11 +28,10 @@ tokio = { version = "1.49.0", features = ["full"] }
 futures = "0.3.31"
 local-ip-address = "0.6.10"
 dotenv = "0.15.0"
-tower-http = {version = "0.6.8", features = ["cors"] }
+tower-http = {version = "0.6.8", features = ["cors", "fs"] }
 
 # 今は使っていない、削除可
 tauri-plugin-axum = "0.7.1"
 
-# ローカルホストプラグイン
-tauri-plugin-localhost = "2.3.2"
-portpicker = "0.1.1"
+# 余ったPORT番号を自動取得
+# portpicker = "0.1.1"
