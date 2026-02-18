@@ -2,7 +2,7 @@
 import { useMemo, useRef, useState, useTransition } from "react";
 import { BsUpload } from "react-icons/bs";
 import { PiUploadThin } from "react-icons/pi";
-import { RiDeleteBin2Line } from "react-icons/ri";
+import { RiCheckLine, RiCloseLine, RiDeleteBin2Line } from "react-icons/ri";
 import { type UploadResType } from "@/types";
 import Divider from "./divider";
 
@@ -119,8 +119,17 @@ const Upload = () => {
                     onClick={() => handleDelete(index)}
                     className="h-full bg-[#b924a2] text-amber-200 flex-1 flex items-center justify-center gap-2 cursor-pointer hover:text-red-500 hover:bg-black transition-colors duration-300"
                   >
-                    <RiDeleteBin2Line />
-                    {target ? "クリア" : "削除"}
+                    {target ? (
+                      target.uploaded ? (
+                        <RiCheckLine />
+                      ) : (
+                        <RiCloseLine color="#fd5959" />
+                      )
+                    ) : (
+                      <RiDeleteBin2Line />
+                    )}
+
+                    {target ? (target.uploaded ? "クリア" : "失敗") : "削除"}
                   </button>
                 </div>
               );
