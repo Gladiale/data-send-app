@@ -30,11 +30,11 @@ https://tkwork.tech/tauri-nextjs-setup-tutorial/
 npm install @tauri-apps/api
 ```
 
-<!-- 1024 x 1024 -->
+<!-- is square -->
 画像サイズ変更: https://imresizer.com/resize-png-to-256x256  
 アイコンを設定: https://blog.64p.org/entry/2024/05/31/044025
 
 ### tauri アプリにアイコンを設定する方法
 ```bash
-npm run tauri icon ~/Documents/neojot.png
+npm run tauri icon icon.png
 ```
