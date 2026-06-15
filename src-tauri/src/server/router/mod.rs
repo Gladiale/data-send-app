@@ -76,6 +76,7 @@ pub fn app() -> Router {
         // 上記の「API（/axum-api）」にも「アップロードページ（/upload）」にもマッチしなかったすべてのリクエストは、
         // 埋め込みアセット（rust-embed でバイナリに埋め込まれた ./out ディレクトリの内容）から該当ファイルを探して返す。
         // 例えば、/_next/static/... や /images/... へのアクセスは、コンパイル時に埋め込まれた JS/CSS/画像がそのまま返る。
+        // .fallback_service(ServeDir::new("./out"))
         .fallback(static_handler)
         // 1024 バイト = 1 KB (キロバイト)　1024 KB = 1 MB (メガバイト)　1024 MB = 1 GB (ギガバイト)
         // デフォルトのボディサイズ制限（2MB程度）を 1 GB（ギガバイト）に拡張
