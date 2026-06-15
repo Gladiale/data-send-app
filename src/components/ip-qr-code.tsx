@@ -50,7 +50,7 @@ const IpQrCode = () => {
         <div className="w-fit mx-auto min-h-80">
           {socketAddr && (
             <QRCodeCanvas
-              value={`${socketAddr}/upload`}
+              value={`http://${socketAddr}/upload`}
               size={320}
               level={"L"}
               bgColor={"#f9eafa"}
